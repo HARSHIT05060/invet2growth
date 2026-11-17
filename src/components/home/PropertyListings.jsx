@@ -1,31 +1,29 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { MapPin, BedDouble, Ruler, KeyRound, Car, Sofa, Heart, ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { useDb, isPublic } from "@/lib/db/store";
+import PropertyCard from "@/components/property/PropertyCard";
 
-const EXTRA_ICONS = { key: KeyRound, car: Car, sofa: Sofa };
 const FILTERS = [
-  { id: "all", label: "All" },
-  { id: "buy", label: "For sale" },
-  { id: "rent", label: "For rent" },
+  { id: "all", label: "All", test: () => true, href: "/properties" },
+  { id: "sale", label: "For sale", test: (p) => p.listingType === "sale", href: "/properties?type=sale" },
+  { id: "rent", label: "For rent", test: (p) => p.listingType === "rent", href: "/properties?type=rent" },
+  { id: "commercial", label: "Commercial", test: (p) => p.segment === "commercial", href: "/properties?segment=commercial" },
 ];
 
-export default function PropertyListings({ listings }) {
+export default function PropertyListings() {
   const [filter, setFilter] = useState("all");
-  const [saved, setSaved] = useState([]);
-
-  // Hero search sets the Buy / Rent filter.
-  useEffect(() => {
-    const onSearch = (e) => setFilter(e.detail.mode === "rent" ? "rent" : "buy");
-    window.addEventListener("i2g:search", onSearch);
-    return () => window.removeEventListener("i2g:search", onSearch);
-  }, []);
-
-  const list = filter === "all" ? listings : listings.filter((l) => l.mode === filter);
-
-  function toggleSave(id) {
-    setSaved((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
-  }
+  const f = FILTERS.find((x) => x.id === filter);
+  const list = useDb(
+    (s) =>
+      s.properties
+        .filter((p) => isPublic(p) && f.test(p))
+        .sort((a, b) => Number(b.featured) - Number(a.featured) || b.views - a.views)
+        .slice(0, 6),
+    [filter]
+  );
 
   return (
     <section className="section" id="properties">
@@ -37,69 +35,31 @@ export default function PropertyListings({ listings }) {
               Popular <em>properties</em>
             </h2>
           </div>
-          <div className="seg seg--light" role="tablist" aria-label="Filter properties">
-            {FILTERS.map((f) => (
-              <button
-                key={f.id}
-                type="button"
-                role="tab"
-                aria-selected={filter === f.id}
-                className={filter === f.id ? "is-active" : ""}
-                onClick={() => setFilter(f.id)}
-              >
-                {f.label}
-              </button>
-            ))}
+          <div className="section__tools">
+            <div className="seg seg--light" role="tablist" aria-label="Filter properties">
+              {FILTERS.map((x) => (
+                <button
+                  key={x.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={filter === x.id}
+                  className={filter === x.id ? "is-active" : ""}
+                  onClick={() => setFilter(x.id)}
+                >
+                  {x.label}
+                </button>
+              ))}
+            </div>
+            <Link href={f.href} className="link-arrow">
+              View all <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
 
         <div className="listings">
-          {list.map((p, i) => {
-            const Extra = EXTRA_ICONS[p.extra.icon];
-            const isSaved = saved.includes(p.id);
-            return (
-              <article key={`${filter}-${p.id}`} className="listing" data-reveal style={{ "--d": i }}>
-                <div className="listing__media">
-                  <img src={p.image} alt={`${p.title} in ${p.place}`} loading="lazy" />
-                  <span className="listing__view" aria-hidden="true">View</span>
-                  <span className={`badge badge--${p.mode}`}>{p.mode === "rent" ? "For rent" : "For sale"}</span>
-                  <button
-                    type="button"
-                    className={`listing__save${isSaved ? " is-saved" : ""}`}
-                    aria-label={isSaved ? "Remove from saved" : "Save property"}
-                    aria-pressed={isSaved}
-                    onClick={() => toggleSave(p.id)}
-                  >
-                    <Heart size={18} />
-                  </button>
-                </div>
-                <div className="listing__body">
-                  <div className="listing__price">
-                    {p.price}
-                    {p.per && <span>{p.per}</span>}
-                  </div>
-                  <h3>{p.title}</h3>
-                  <p className="listing__place">
-                    <MapPin size={15} /> {p.place}
-                  </p>
-                  <ul className="listing__facts">
-                    <li>
-                      <BedDouble size={16} /> {p.beds}
-                    </li>
-                    <li>
-                      <Ruler size={16} /> {p.area}
-                    </li>
-                    <li>
-                      <Extra size={16} /> {p.extra.label}
-                    </li>
-                  </ul>
-                  <a href="#" className="listing__link">
-                    View details <ArrowUpRight size={16} />
-                  </a>
-                </div>
-              </article>
-            );
-          })}
+          {list.map((p, i) => (
+            <PropertyCard key={`${filter}-${p.id}`} p={p} i={i} />
+          ))}
         </div>
       </div>
     </section>

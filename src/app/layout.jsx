@@ -1,9 +1,9 @@
 import { Urbanist, Instrument_Serif } from "next/font/google";
 import "lenis/dist/lenis.css";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import SmoothScroll from "@/components/layout/SmoothScroll";
+import "./app.css";
+import "./admin.css";
+import Toaster from "@/components/ui/Toast";
 
 const urbanist = Urbanist({
   subsets: ["latin"],
@@ -21,7 +21,7 @@ const serif = Instrument_Serif({
 });
 
 const description =
-  "Verified flats, houses, plots and commercial spaces across India. Buy, sell or rent with owners and brokers directly.";
+  "Verified properties, market dashboards for NSE stocks and investment education for India. Buy, sell, rent or lease, and follow the markets in one place.";
 
 export const metadata = {
   // Set NEXT_PUBLIC_SITE_URL in Vercel once you have a custom domain.
@@ -32,14 +32,14 @@ export const metadata = {
         : "http://localhost:3000")
   ),
   title: {
-    default: "invest2growth | Buy, Sell & Rent Properties Across India",
+    default: "invest2growth | Property, Markets & Investment News",
     template: "%s | invest2growth",
   },
   description,
   openGraph: {
     type: "website",
     siteName: "invest2growth",
-    title: "invest2growth | Buy, Sell & Rent Properties Across India",
+    title: "invest2growth | Property, Markets & Investment News",
     description,
     images: ["/images/hero.webp"],
   },
@@ -66,10 +66,8 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body suppressHydrationWarning>
-        <SmoothScroll />
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        {children}
+        <Toaster />
       </body>
     </html>
   );

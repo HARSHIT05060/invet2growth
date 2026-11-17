@@ -1,0 +1,51 @@
+// Sample NSE symbol master and index reference levels (development only — see README).
+// `base` is a made-up reference price used to SIMULATE quotes. It is not market data.
+
+export const INDICES = [
+  { id: "NIFTY50", name: "NIFTY 50", exchange: "NSE", base: 24850, vol: 0.009 },
+  { id: "BANKNIFTY", name: "NIFTY BANK", exchange: "NSE", base: 53420, vol: 0.011 },
+  { id: "NIFTYNEXT50", name: "NIFTY NEXT 50", exchange: "NSE", base: 68940, vol: 0.011 },
+  { id: "SENSEX", name: "SENSEX", exchange: "BSE", base: 81620, vol: 0.009 },
+  { id: "NIFTYIT", name: "NIFTY IT", exchange: "NSE", base: 41280, vol: 0.013 },
+  { id: "NIFTYMIDCAP100", name: "NIFTY MIDCAP 100", exchange: "NSE", base: 57110, vol: 0.013 },
+];
+
+// shares: approximate shares outstanding in crore, used only to derive a demo market cap.
+export const STOCKS = [
+  { symbol: "RELIANCE", name: "Reliance Industries Ltd", sector: "Energy", base: 1385, shares: 1353, vol: 0.014, avgVol: 9_800_000 },
+  { symbol: "TCS", name: "Tata Consultancy Services Ltd", sector: "IT", base: 3420, shares: 362, vol: 0.013, avgVol: 2_400_000 },
+  { symbol: "HDFCBANK", name: "HDFC Bank Ltd", sector: "Banking", base: 1745, shares: 765, vol: 0.012, avgVol: 11_200_000 },
+  { symbol: "ICICIBANK", name: "ICICI Bank Ltd", sector: "Banking", base: 1310, shares: 712, vol: 0.013, avgVol: 12_600_000 },
+  { symbol: "INFY", name: "Infosys Ltd", sector: "IT", base: 1580, shares: 415, vol: 0.015, avgVol: 7_100_000 },
+  { symbol: "BHARTIARTL", name: "Bharti Airtel Ltd", sector: "Telecom", base: 1690, shares: 598, vol: 0.013, avgVol: 5_300_000 },
+  { symbol: "SBIN", name: "State Bank of India", sector: "Banking", base: 812, shares: 892, vol: 0.016, avgVol: 14_500_000 },
+  { symbol: "ITC", name: "ITC Ltd", sector: "FMCG", base: 432, shares: 1251, vol: 0.011, avgVol: 13_900_000 },
+  { symbol: "LT", name: "Larsen & Toubro Ltd", sector: "Capital Goods", base: 3610, shares: 137, vol: 0.014, avgVol: 2_100_000 },
+  { symbol: "HINDUNILVR", name: "Hindustan Unilever Ltd", sector: "FMCG", base: 2465, shares: 235, vol: 0.011, avgVol: 1_600_000 },
+  { symbol: "KOTAKBANK", name: "Kotak Mahindra Bank Ltd", sector: "Banking", base: 1820, shares: 199, vol: 0.013, avgVol: 4_200_000 },
+  { symbol: "AXISBANK", name: "Axis Bank Ltd", sector: "Banking", base: 1145, shares: 309, vol: 0.015, avgVol: 7_800_000 },
+  { symbol: "BAJFINANCE", name: "Bajaj Finance Ltd", sector: "Financial Services", base: 912, shares: 620, vol: 0.018, avgVol: 6_100_000 },
+  { symbol: "MARUTI", name: "Maruti Suzuki India Ltd", sector: "Auto", base: 12340, shares: 31, vol: 0.014, avgVol: 520_000 },
+  { symbol: "TATAMOTORS", name: "Tata Motors Ltd", sector: "Auto", base: 712, shares: 368, vol: 0.02, avgVol: 15_300_000 },
+  { symbol: "M&M", name: "Mahindra & Mahindra Ltd", sector: "Auto", base: 3080, shares: 124, vol: 0.016, avgVol: 2_900_000 },
+  { symbol: "SUNPHARMA", name: "Sun Pharmaceutical Industries Ltd", sector: "Pharma", base: 1690, shares: 240, vol: 0.013, avgVol: 2_700_000 },
+  { symbol: "HCLTECH", name: "HCL Technologies Ltd", sector: "IT", base: 1540, shares: 271, vol: 0.015, avgVol: 3_400_000 },
+  { symbol: "WIPRO", name: "Wipro Ltd", sector: "IT", base: 262, shares: 1046, vol: 0.016, avgVol: 10_800_000 },
+  { symbol: "ULTRACEMCO", name: "UltraTech Cement Ltd", sector: "Cement", base: 11720, shares: 29, vol: 0.013, avgVol: 380_000 },
+  { symbol: "ASIANPAINT", name: "Asian Paints Ltd", sector: "Consumer", base: 2390, shares: 96, vol: 0.013, avgVol: 1_300_000 },
+  { symbol: "TITAN", name: "Titan Company Ltd", sector: "Consumer", base: 3360, shares: 89, vol: 0.015, avgVol: 1_100_000 },
+  { symbol: "NTPC", name: "NTPC Ltd", sector: "Power", base: 342, shares: 970, vol: 0.016, avgVol: 12_000_000 },
+  { symbol: "POWERGRID", name: "Power Grid Corporation of India Ltd", sector: "Power", base: 298, shares: 930, vol: 0.014, avgVol: 9_600_000 },
+  { symbol: "ONGC", name: "Oil & Natural Gas Corporation Ltd", sector: "Energy", base: 246, shares: 1258, vol: 0.017, avgVol: 11_400_000 },
+  { symbol: "TATASTEEL", name: "Tata Steel Ltd", sector: "Metals", base: 158, shares: 1248, vol: 0.02, avgVol: 28_000_000 },
+  { symbol: "JSWSTEEL", name: "JSW Steel Ltd", sector: "Metals", base: 1035, shares: 244, vol: 0.018, avgVol: 2_300_000 },
+  { symbol: "ADANIPORTS", name: "Adani Ports and SEZ Ltd", sector: "Infrastructure", base: 1410, shares: 216, vol: 0.02, avgVol: 3_500_000 },
+  { symbol: "COALINDIA", name: "Coal India Ltd", sector: "Mining", base: 388, shares: 616, vol: 0.016, avgVol: 7_600_000 },
+  { symbol: "NESTLEIND", name: "Nestle India Ltd", sector: "FMCG", base: 2280, shares: 96, vol: 0.011, avgVol: 900_000 },
+  { symbol: "DLF", name: "DLF Ltd", sector: "Real Estate", base: 815, shares: 248, vol: 0.021, avgVol: 4_800_000 },
+  { symbol: "GODREJPROP", name: "Godrej Properties Ltd", sector: "Real Estate", base: 2240, shares: 30, vol: 0.022, avgVol: 900_000 },
+  { symbol: "OBEROIRLTY", name: "Oberoi Realty Ltd", sector: "Real Estate", base: 1760, shares: 36, vol: 0.02, avgVol: 700_000 },
+  { symbol: "ZOMATO", name: "Eternal Ltd", sector: "Consumer Tech", base: 284, shares: 965, vol: 0.024, avgVol: 38_000_000 },
+  { symbol: "IRCTC", name: "Indian Railway Catering & Tourism Corp Ltd", sector: "Travel", base: 742, shares: 80, vol: 0.016, avgVol: 1_900_000 },
+  { symbol: "HAL", name: "Hindustan Aeronautics Ltd", sector: "Defence", base: 4520, shares: 67, vol: 0.021, avgVol: 1_400_000 },
+];

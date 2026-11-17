@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { pad } from "@/lib/utils";
 
@@ -12,14 +13,14 @@ export default function CategoryGallery({ categories }) {
               Aap kya <em>dhoondh</em> rahe hain?
             </h2>
           </div>
-          <a href="#categories" className="link-arrow">
+          <Link href="/properties" className="link-arrow">
             View all <ArrowRight size={16} />
-          </a>
+          </Link>
         </div>
 
         <div className="cats" data-reveal>
           {categories.map((c, i) => (
-            <a key={c.title} href="#properties" className="cat">
+            <Link key={c.title} href={c.href} className="cat">
               <img src={c.image} alt="" loading="lazy" />
               <span className="cat__shade" />
               <span className="cat__num">{pad(i + 1)}</span>
@@ -35,7 +36,7 @@ export default function CategoryGallery({ categories }) {
                   <ArrowUpRight size={18} />
                 </span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

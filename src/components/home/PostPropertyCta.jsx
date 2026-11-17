@@ -17,7 +17,7 @@ export default function PostPropertyCta({ contact }) {
             </h2>
             <p>List your property for free and reach serious buyers and tenants in your city.</p>
             <div className="cta__actions">
-              <Link href="/contact" className="btn btn--white btn--lg">
+              <Link href="/post-property" className="btn btn--white btn--lg">
                 <Plus size={18} strokeWidth={2.4} /> Post property free
               </Link>
               <a href={contact.phoneHref} className="btn btn--glass btn--lg">

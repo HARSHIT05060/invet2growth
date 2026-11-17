@@ -4,52 +4,68 @@ export const NAV = [
   {
     label: "Buy",
     items: [
-      { label: "Flats & apartments", href: "/#properties" },
-      { label: "Independent houses & villas", href: "/#categories" },
-      { label: "Plots & land", href: "/#categories" },
-      { label: "Ready to move", href: "/#properties" },
+      { label: "Flats & apartments", href: "/properties?type=sale&category=flat" },
+      { label: "Villas & independent houses", href: "/properties?type=sale&segment=residential" },
+      { label: "Plots & land", href: "/properties?type=sale&segment=land" },
+      { label: "Ready to move", href: "/properties?type=sale&availability=ready" },
+      { label: "New projects (under construction)", href: "/properties?type=sale&availability=under-construction" },
     ],
   },
   {
     label: "Rent",
     items: [
-      { label: "Flats for rent", href: "/#properties" },
-      { label: "Houses for rent", href: "/#properties" },
-      { label: "PG & shared rooms", href: "/#categories" },
-      { label: "Fully furnished", href: "/#properties" },
-    ],
-  },
-  {
-    label: "Sell",
-    items: [
-      { label: "Post property for free", href: "/#post" },
-      { label: "Sell as owner", href: "/#post" },
-      { label: "Sell as broker", href: "/#post" },
+      { label: "Flats for rent", href: "/properties?type=rent&category=flat" },
+      { label: "Houses for rent", href: "/properties?type=rent&category=house" },
+      { label: "PG & hostels", href: "/properties?type=rent&category=pg" },
+      { label: "Fully furnished", href: "/properties?type=rent&furnishing=Fully+furnished" },
     ],
   },
   {
     label: "Commercial",
     items: [
-      { label: "Shops & showrooms", href: "/#categories" },
-      { label: "Office spaces", href: "/#categories" },
-      { label: "Warehouses", href: "/#categories" },
+      { label: "Office space", href: "/properties?segment=commercial&category=office" },
+      { label: "Shops & showrooms", href: "/properties?segment=commercial&category=shop" },
+      { label: "Co-working", href: "/properties?segment=commercial&category=coworking" },
+      { label: "Warehouses & industrial", href: "/properties?segment=commercial&category=warehouse" },
+      { label: "Commercial on lease", href: "/properties?type=lease" },
     ],
   },
   {
-    label: "Plots",
+    label: "Market",
     items: [
-      { label: "Residential plots", href: "/#categories" },
-      { label: "Agricultural land", href: "/#categories" },
-      { label: "Farm houses", href: "/#categories" },
+      { label: "Market dashboard", href: "/market" },
+      { label: "My watchlist & alerts", href: "/market/watchlist" },
+      { label: "Compare stocks", href: "/market/compare" },
+      { label: "Market news", href: "/news?category=stock-market-news" },
+    ],
+  },
+  {
+    label: "News & Tips",
+    items: [
+      { label: "Latest news", href: "/news" },
+      { label: "Investment tips", href: "/news?category=investment-tips" },
+      { label: "Real estate updates", href: "/news?category=real-estate-news" },
+      { label: "Mutual funds", href: "/news?category=mutual-funds" },
+      { label: "IPO updates", href: "/news?category=ipo-updates" },
+      { label: "Financial education", href: "/news?category=financial-education" },
     ],
   },
   {
     label: "Help",
     items: [
       { label: "Contact us", href: "/contact" },
-      { label: "Why invest2growth", href: "/#why" },
+      { label: "Post property", href: "/post-property" },
+      { label: "Disclaimer", href: "/legal/disclaimer" },
+      { label: "Privacy policy", href: "/legal/privacy" },
     ],
   },
+];
+
+// Replace with your brand's real profile URLs.
+export const SOCIAL = [
+  { label: "Instagram", href: "https://www.instagram.com/" },
+  { label: "Facebook", href: "https://www.facebook.com/" },
+  { label: "YouTube", href: "https://www.youtube.com/" },
 ];
 
 export const CONTACT = {
